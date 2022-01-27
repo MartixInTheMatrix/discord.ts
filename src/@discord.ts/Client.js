@@ -18,19 +18,22 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CustomClient = void 0;
-const discord_js_1 = __importStar(require("discord.js"));
+exports.Client = void 0;
+const discord_js_1 = __importDefault(require("discord.js"));
 const _ = __importStar(require("fs"));
 const p = __importStar(require("path"));
 const Command_1 = require("./Command");
 const Event_1 = require("./Event");
 const rest_1 = require("@discordjs/rest");
 const v9_1 = require("discord-api-types/v9");
-const addons_1 = require("./addons");
-class CustomClient extends discord_js_1.Client {
+const Intent_1 = require("./Intent");
+class Client extends discord_js_1.default.Client {
     constructor(token, options) {
-        super(options ? options : addons_1.Intents.ALL);
+        super(options ? options : Intent_1.Intents.ALL);
         this.commands = new discord_js_1.default.Collection();
         this.events = new discord_js_1.default.Collection();
         this.token = token;
@@ -105,4 +108,4 @@ class CustomClient extends discord_js_1.Client {
         });
     }
 }
-exports.CustomClient = CustomClient;
+exports.Client = Client;

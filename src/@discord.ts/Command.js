@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Command = void 0;
 const builders_1 = require("@discordjs/builders");
-
 class Command {
     constructor(help) {
         this.help = help,
@@ -19,7 +18,7 @@ class Command {
             builder.setDescription(this.description);
             if (this.options) {
                 this.options.forEach((option) => {
-                    getOptionsFunctionForType(builder, option.type).call(builder, ((opt) => {
+                    this.getOptionsFunctionForType(builder, option.type).call(builder, ((opt) => {
                         opt.setName(option.name);
                         opt.setDescription(option.description);
                         opt.setRequired(option.required === undefined ? true : !option.required ? false : true);
@@ -47,8 +46,7 @@ class Command {
             });
         }
     }
-
-    getOptionsFunctionForType(builder, type){
+    getOptionsFunctionForType(builder, type) {
         switch (type) {
             case "BOOLEAN": return builder.addBooleanOption;
             case "CHANNEL": return builder.addChannelOption;
@@ -58,6 +56,6 @@ class Command {
             case "USER": return builder.addUserOption;
             default: return builder.addStringOption;
         }
-    };
+    }
 }
 exports.Command = Command;
