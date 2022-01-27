@@ -109,17 +109,7 @@ export class CustomClient extends Client{
 }
 import { SlashCommandBuilder, ContextMenuCommandBuilder } from '@discordjs/builders';
 
-const getOptionsFunctionForType = (builder:any, type:any) => {
-    switch (type) {
-        case "BOOLEAN": return builder.addBooleanOption;
-        case "CHANNEL": return builder.addChannelOption;
-        case "NUMBER": return builder.addNumberOption;
-        case "ROLE": return builder.addRoleOption;
-        case "STRING": return builder.addStringOption;
-        case "USER": return builder.addUserOption;
-        default: return builder.addStringOption;
-    }
-}
+
 
 export class Command {
     help: any;
@@ -147,7 +137,7 @@ export class Command {
             if (this.options){
                 this.options.forEach((option: any)=>{
 
-                    getOptionsFunctionForType(builder, option.type).call(builder, (((opt: any)=>{
+                    this.getOptionsFunctionForType(builder, option.type).call(builder, ((opt: any)=>{
                             opt.setName(option.name);
                             opt.setDescription(option.description)
                             opt.setRequired(option.required === undefined ? true : !option.required? false : true);
@@ -157,7 +147,7 @@ export class Command {
                             }
     
                             return opt;            
-                    })))  
+                    }))  
                 })
 
             }
@@ -180,6 +170,18 @@ export class Command {
                 return {}
             })
 
+        }
+    }
+    
+    private getOptionsFunctionForType(builder:any, type:any){
+        switch (type) {
+            case "BOOLEAN": return builder.addBooleanOption;
+            case "CHANNEL": return builder.addChannelOption;
+            case "NUMBER": return builder.addNumberOption;
+            case "ROLE": return builder.addRoleOption;
+            case "STRING": return builder.addStringOption;
+            case "USER": return builder.addUserOption;
+            default: return builder.addStringOption;
         }
     }
 }
