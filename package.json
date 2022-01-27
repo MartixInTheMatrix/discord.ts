@@ -1,0 +1,21 @@
+{
+  "name": "discord.tsc",
+  "version": "1.0.4",
+  "description": "",
+  "main": "./src/main.js",
+  "types": "./typings/index.d.ts",
+  "files": [
+    "src",
+    "typings"
+  ],
+  "scripts": {
+    "test": "tsc"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^13.6.0",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
+  }
+}
