@@ -5,4 +5,4 @@ exports.Client = require('./@discord.ts/Client').Client;
 exports.Command = require('./@discord.ts/Command').Command;
 exports.Event = require('./@discord.ts/Event').Event;
 exports.Intents = require('./@discord.ts/Intent').Intents;
-exports.default = require('discord.js');
+module.exports = require('discord.js');

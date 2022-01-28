@@ -7,7 +7,7 @@ import { REST } from '@discordjs/rest';
 import { Routes }from 'discord-api-types/v9';
 import { Intents } from './addons'
 
-export default require('discord.js')
+module.exports = require('discord.js')
 
 export class Client extends discord.Client{
 
