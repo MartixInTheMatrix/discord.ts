@@ -33,7 +33,12 @@ const v9_1 = require("discord-api-types/v9");
 const Intent_1 = require("./Intent");
 class Client extends discord_js_1.default.Client {
     constructor(token, options) {
-        super(options ? options : Intent_1.Intents.ALL);
+        super(options ? options : {
+            partials: ["MESSAGE", "REACTION"],
+            intents: [
+                Intent_1.Intents.ALL
+            ]
+        });
         this.commands = new discord_js_1.default.Collection();
         this.events = new discord_js_1.default.Collection();
         this.token = token;
