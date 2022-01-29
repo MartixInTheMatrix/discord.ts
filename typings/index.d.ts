@@ -14,7 +14,12 @@ export class Client extends discord.Client{
     token: string;
 
     constructor(token: string, options?: discord.ClientOptions) {
-        super(options? options : Intents.ALL);
+        super(options? options : {
+            partials: ["MESSAGE", "REACTION"],
+            intents: [
+                Intents.ALL
+            ]
+        });
 
         this.commands = new discord.Collection();
         this.events = new discord.Collection();
