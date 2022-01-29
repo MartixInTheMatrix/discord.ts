@@ -29,7 +29,7 @@ export class Client extends discord.Client {
     loadCommands(path: string){
         _.readdirSync(p.resolve(path)).forEach(obj => {
 
-            if(obj.endsWith('.ts'|| '.js')){
+            if(obj.endsWith('.ts' || '.js')){
                let help = require(p.resolve(`${path}/${obj}`))
 
                 this.commands.set(obj.split(".")[0], new Command(help))
