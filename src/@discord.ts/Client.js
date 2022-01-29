@@ -45,7 +45,7 @@ class Client extends discord_js_1.default.Client {
     }
     loadCommands(path) {
         _.readdirSync(p.resolve(path)).forEach(obj => {
-            if (obj.endsWith('.js')) {
+            if (obj.endsWith('.ts' || '.js')) {
                 let help = require(p.resolve(`${path}/${obj}`));
                 this.commands.set(obj.split(".")[0], new Command_1.Command(help));
             }
@@ -60,7 +60,7 @@ class Client extends discord_js_1.default.Client {
     }
     loadEvents(path) {
         _.readdirSync(p.resolve(path)).forEach(obj => {
-            if (obj.endsWith('.js')) {
+            if (obj.endsWith('.ts' || '.js')) {
                 const event = require(p.resolve(`${path}/${obj}`));
                 const evtName = obj.split('.')[0];
                 this.events.set(evtName, new Event_1.Event(event, this, evtName));
