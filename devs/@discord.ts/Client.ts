@@ -27,14 +27,14 @@ export class Client extends discord.Client {
             if(obj.endsWith('.js')){
                let help = require(p.resolve(`${path}/${obj}`))
 
-                this.commands.set(obj.split(".")[0], new Command(help.default))
+                this.commands.set(obj.split(".")[0], new Command(help))
             }else{
                 const dir = _.readdirSync(p.resolve(`${path}/${obj}`)).filter(files => files.endsWith(".js"));
     
                 for(const file of dir) {
                    let help = require(p.resolve(`${path}/${obj}/${file}`))
     
-                    this.commands.set(file.split(".")[0], new Command(help.default))
+                    this.commands.set(file.split(".")[0], new Command(help))
                 }
             }
             

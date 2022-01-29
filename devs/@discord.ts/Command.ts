@@ -1,5 +1,6 @@
 import discord from "discord.js"
 import { SlashCommandBuilder, ContextMenuCommandBuilder } from '@discordjs/builders';
+import { Client } from "./Client";
 
 
 export class Command {
@@ -12,11 +13,11 @@ export class Command {
 
     constructor(help:any){
         this.help = help,
-        this.name = help.name,
-        this.description = help.description,
-        this.type = help.type,
-        this.options = help.options,
-        this.defaultPermission = help.defaultPermission
+        this.name = help.default.name,
+        this.description = help.default.description,
+        this.type = help.default.type,
+        this.options = help.default.options,
+        this.defaultPermission = help.default.defaultPermission
     }
 
     build(client: discord.Client){
@@ -64,6 +65,10 @@ export class Command {
         }
     }
 
+    run(Client: Client, interaction: discord.CommandInteraction){
+        this.help.run(Client, interaction, interaction.options.resolved)
+    }
+    
     private getOptionsFunctionForType(builder:any, type:any){
         switch (type) {
             case "BOOLEAN": return builder.addBooleanOption;

@@ -42,13 +42,13 @@ class Client extends discord_js_1.default.Client {
         _.readdirSync(p.resolve(path)).forEach(obj => {
             if (obj.endsWith('.js')) {
                 let help = require(p.resolve(`${path}/${obj}`));
-                this.commands.set(obj.split(".")[0], new Command_1.Command(help.default));
+                this.commands.set(obj.split(".")[0], new Command_1.Command(help));
             }
             else {
                 const dir = _.readdirSync(p.resolve(`${path}/${obj}`)).filter(files => files.endsWith(".js"));
                 for (const file of dir) {
                     let help = require(p.resolve(`${path}/${obj}/${file}`));
-                    this.commands.set(file.split(".")[0], new Command_1.Command(help.default));
+                    this.commands.set(file.split(".")[0], new Command_1.Command(help));
                 }
             }
         });

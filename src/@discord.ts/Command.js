@@ -5,11 +5,11 @@ const builders_1 = require("@discordjs/builders");
 class Command {
     constructor(help) {
         this.help = help,
-            this.name = help.name,
-            this.description = help.description,
-            this.type = help.type,
-            this.options = help.options,
-            this.defaultPermission = help.defaultPermission;
+            this.name = help.default.name,
+            this.description = help.default.description,
+            this.type = help.default.type,
+            this.options = help.default.options,
+            this.defaultPermission = help.default.defaultPermission;
     }
     build(client) {
         if (!this.type || this.type === "CHAT_INPUT") {
@@ -45,6 +45,9 @@ class Command {
                 return {};
             });
         }
+    }
+    run(Client, interaction) {
+        this.help.run(Client, interaction, interaction.options.resolved);
     }
     getOptionsFunctionForType(builder, type) {
         switch (type) {
